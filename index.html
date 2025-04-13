@@ -7,7 +7,77 @@
 </head>
 <body>
     <script>
-        function;
+         let humanScore = 0;
+         let computerScore = 0;
+
+        function getComputerChoice() {
+            let computerChoice = Math.random();
+            if (computerChoice >= 0 && computerChoice < 1/3) {
+                computerChoice = 'Rock';
+            } else if (computerChoice >= 1/3 && computerChoice < 2/3) {
+                computerChoice = 'Paper';
+            } else if (computerChoice >= 2/3 && computerChoice <= 1) {
+                computerChoice = 'Scissors';
+            }
+
+            console.log(`Computer chooses: ${computerChoice}`);
+            return computerChoice;
+        };
+
+        function getHumanChoice() {
+            let input = prompt("Enter your move",'');
+            if (input.toLowerCase() === 'rock') {
+                input = 'Rock';
+            } else if (input.toLowerCase() === 'paper') {
+                input = 'Paper';
+            } else if (input.toLowerCase() === 'scissors') {
+                input = 'Scissors';
+            } else{alert("Enter a valid move!");
+                    return getHumanChoice();
+                }
+
+            console.log(`You choose: ${input}`);
+            return input;
+        }
+
+        function playRound(humanChoice, computerChoice) {
+           
+            if (
+                (humanChoice === 'Rock' && computerChoice === 'Scissors') ||
+                (humanChoice === 'Paper' && computerChoice === 'Rock') ||
+                (humanChoice === 'Scissors' && computerChoice === 'Paper')
+            ) {
+                humanScore++;
+                console.log('You Win!')
+            } else if (
+                (computerChoice === 'Rock' && humanChoice === 'Scissors') ||
+                (computerChoice === 'Paper' && humanChoice === 'Rock') ||
+                (computerChoice === 'Scissors' && humanChoice === 'Paper')) {
+                    computerScore++;
+                    console.log('You Lose.')
+            } else if (humanChoice === computerChoice) {
+                console.log('Tie.')
+            }
+        }
+        
+        function playGame() {
+            for (let i = 0; i < 5; i++) {
+                const humanChoice = getHumanChoice();
+                const computerChoice = getComputerChoice();
+                playRound(humanChoice, computerChoice);
+            }
+
+            alert("Game Over.");
+        }
+        
+        playGame();
+        
+
+
+        
+        
+
+        
     </script>
 </body>
 </html>
